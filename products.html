@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Paverite • Products</title>
+  <link href="logo.png" rel="icon" type="image/png"/>
+  <link href="logo.png" rel="apple-touch-icon"/>
+  <style>
+    :root{--g0:rgba(255,255,255,0.08);--g1:rgba(255,255,255,0.14);--edge:rgba(255,255,255,0.7);--edge-soft:rgba(255,255,255,0.25);--radius:20px}
+    *{box-sizing:border-box}
+    body{margin:0;background:#000;color:#082140;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;position:relative}
+    a{text-decoration:none;color:inherit}
+    .page-bg{position:fixed;inset:0;background:url('written-background.jpg') center/cover no-repeat;z-index:-2}
+    .page-bg::before{content:"";position:absolute;inset:0;background:rgba(16,24,38,0.55);z-index:-1}
+
+    .ios26-header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px}
+    .ios26-header .glass{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 18px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(16,24,38,0.35),rgba(16,24,38,0.18));-webkit-backdrop-filter:blur(18px) saturate(140%) contrast(110%);backdrop-filter:blur(18px) saturate(140%) contrast(110%);box-shadow:0 20px 40px rgba(0,0,0,0.28),inset 0 1px 0 rgba(255,255,255,0.25);isolation:isolate;overflow:hidden}
+    .ios26-header .refract{position:absolute;inset:-1px;border-radius:var(--radius);background:radial-gradient(120% 70% at 0% 0%,rgba(255,255,255,0.40),transparent 60%),radial-gradient(120% 70% at 100% 100%,rgba(255,255,255,0.24),transparent 62%),linear-gradient(100deg,transparent 40%,rgba(255,255,255,0.38) 50%,transparent 60%);background-size:120% 120%,120% 120%,250% 100%;mix-blend-mode:screen;opacity:.55;pointer-events:none}
+    .brand{display:flex;align-items:center;gap:12px}
+    .ios26-header .logo{width:40px;height:40px;display:inline-block;background:none;border-radius:50%}
+    .ios26-header .logo img{width:100%;height:100%;display:block}
+    .ios26-header .name{color:#eef3f9;font-weight:700;letter-spacing:.2px}
+    .name-brand{color:#082140}
+    .name-red{color:#c91e1e}
+    .nav{display:flex;align-items:center;gap:16px}
+    .nav a{padding:8px 12px;border-radius:12px;opacity:.95}
+    .nav .cta{background:linear-gradient(180deg,#1b2a48,#0f1f38);color:#fff}
+    .toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.18),rgba(255,255,255,0.08));box-shadow:0 8px 18px rgba(0,0,0,0.28)}
+    .icon{width:20px;height:20px;display:inline-block}
+    .icon>span,.icon>span:before,.icon>span:after{display:block;background:#fff;height:2px;border-radius:2px;transition:transform .24s ease,top .24s ease,opacity .24s ease}
+    .icon>span{position:relative}
+    .icon>span:before,.icon>span:after{content:"";position:absolute;left:0;right:0}
+    .icon>span:before{top:-6px}
+    .icon>span:after{top:6px}
+    .toggle[aria-expanded="true"] .icon>span{opacity:0}
+    .toggle[aria-expanded="true"] .icon>span:before{top:0;transform:rotate(45deg)}
+    .toggle[aria-expanded="true"] .icon>span:after{top:0;transform:rotate(-45deg)}
+    @media(max-width:900px){.nav{position:static;display:flex;flex-direction:row;align-items:center;gap:16px;padding:0;border-radius:0;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}.nav a{background:transparent}}
+    @keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+    .page{padding-top:96px}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+    .catalogue{padding:40px 0}
+    .catalogue-title{font-size:32px;font-weight:900;letter-spacing:.5px;margin:0 0 20px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.cards{grid-template-columns:1fr}}
+    .card{position:relative;border-radius:18px;background:#fff;box-shadow:0 14px 28px rgba(0,0,0,0.12),inset 0 1px 0 rgba(255,255,255,0.25);overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 22px 44px rgba(0,0,0,0.18),inset 0 1px 0 rgba(255,255,255,0.25)}
+    .product-img{width:100%;aspect-ratio:16/9;display:block;object-fit:cover;background:#e7eef7}
+    .info{padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+    .name{font-weight:800}
+    .price{font-weight:700;color:#0f1f38}
+
+    .footer-section{background:#000;margin-top:40px}
+    .footer-section,.footer-section a,.footer-section h1,.footer-section h2,.footer-section h3,.footer-section h4,.footer-section p,.footer-section label{color:#c91e1e}
+    .footer-inner{max-width:1100px;margin:0 auto;padding:24px 20px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+  </style>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <header class="ios26-header">
+    <div class="glass">
+      <div class="refract"></div>
+      <a class="brand" href="index.html"><span class="logo"><img src="logo.png" alt="Paverite logo"/></span><span class="name"><span class="name-brand">PAVE</span><span class="name-red">R</span><span class="name-brand">ITE</span></span></a>
+      <nav class="nav" id="nav"><a href="products.html" aria-current="page">Products</a><a href="moreservices.html">Services</a><a href="contact.html">Contact</a></nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="catalogue">
+      <div class="container">
+        <h1 class="catalogue-title">Products</h1>
+        <div class="cards">
+          <div class="card"><img class="product-img" src="Interlocking.png" alt="Interlocking"/><div class="info"><div class="name">Interlocking</div><div class="price">$0.15/unit</div></div></div>
+          <div class="card"><img class="product-img" src="Holland.png" alt="Holland"/><div class="info"><div class="name">Holland</div><div class="price">$0.15/unit</div></div></div>
+          <div class="card"><img class="product-img" src="Curbstone.png" alt="Curbstone"/><div class="info"><div class="name">Curbstone</div><div class="price">$10/m</div></div></div>
+          <div class="card"><img class="product-img" src="3D V.png" alt="3D V"/><div class="info"><div class="name">3D V</div><div class="price">$0.22/unit</div></div></div>
+          <div class="card"><img class="product-img" src="Fish Scale.png" alt="Fish Scale"/><div class="info"><div class="name">Fish Scale</div><div class="price">$0.22/unit</div></div></div>
+          <div class="card"><img class="product-img" src="3D.png" alt="3D"/><div class="info"><div class="name">3D</div><div class="price">$0.22/unit</div></div></div>
+          <div class="card"><img class="product-img" src="Culvert Pipes.png" alt="Culvert Pipes"/><div class="info"><div class="name">Culvert Pipes</div><div class="price">$60/m</div></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="footer-section">
+    <div class="footer-inner">
+      <div>Paverite • Product Catalogue</div>
+      <div><a href="mailto:info@paverite.co.zw">info@paverite.co.zw</a> • <a href="tel:+263786334480">+263 786 334 480</a></div>
+    </div>
+  </section>
+
+  <svg width="0" height="0" style="position:fixed"><filter id="liquid"><feTurbulence id="noise" type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="2" result="turb"/><feGaussianBlur stdDeviation="1.2"/><feDisplacementMap id="disp" in="SourceGraphic" in2="turb" xChannelSelector="R" yChannelSelector="G" scale="8"/><animate xlink:href="#noise" attributeName="seed" values="1;2;3;4;5;6;7;8;9;10;1" dur="12s" repeatCount="indefinite"/></filter></svg>
+  <script>
+    const t=document.querySelector('.ios26-header .toggle');
+    const n=document.querySelector('.ios26-header .nav');
+    if(t&&n){t.addEventListener('click',()=>{const o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false')})}
+    document.addEventListener('click',(e)=>{const o=n&&n.classList.contains('open');if(!o)return;if(e.target.closest('.ios26-header .nav')||e.target.closest('.ios26-header .toggle'))return;n.classList.remove('open');if(t)t.setAttribute('aria-expanded','false')});
+    if(n){n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');if(t)t.setAttribute('aria-expanded','false')}))}
+    ['https://cdn.prod.website-files.com/69171b99e38abbbab41a06fc/69171b9be38abbbab41a07b6_5f653db856f72049dd2d76d450ae5bf2_project-1-img.jpg',
+     'https://cdn.prod.website-files.com/69171b99e38abbbab41a06fc/69171b9be38abbbab41a07bb_4204fc381beb41c02be4fd2d18c6649f_gallery-img-bl.jpg',
+     'https://cdn.prod.website-files.com/69171b99e38abbbab41a06fc/69171b9be38abbbab41a07b8_540ff395ea7a3837bf45a9551f6fb9d7_gallery-img-br.jpg']
+    .forEach(u=>{
+      document.querySelectorAll(`img[src="${u}"]`).forEach(img=>{
+        const a=img.closest('a');
+        if(a) a.setAttribute('href','products.html');
+        img.addEventListener('click',()=>{window.location.href='products.html'});
+      });
+    });
+    document.querySelectorAll('a[href^="file:///C:/Users/User/Desktop/paverite website/product2.html"]').forEach(a=>a.setAttribute('href','products.html'));
+    const d=document.getElementById('disp');
+    window.addEventListener('scroll',()=>{const y=window.scrollY;const s=8+Math.min(8,y/600*6);if(d)d.setAttribute('scale',s.toFixed(1))});
+  </script>
+</body>
+</html>

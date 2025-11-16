@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>More Services – PAVERITE</title>
+  <link rel="icon" href="logo.png" type="image/png"/>
+  <style>
+    :root{--g0:rgba(255,255,255,0.08);--g1:rgba(255,255,255,0.14);--edge:rgba(255,255,255,0.7);--edge-soft:rgba(255,255,255,0.25);--radius:20px;--brand-blue:#082140;--brand-red:#c91e1e}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;color:#0f1f38;background:#0b1524}
+    .page-bg{position:fixed;inset:0;background:url('written-background.jpg') center/cover no-repeat;z-index:-2}
+    .page-bg::before{content:"";position:absolute;inset:0;background:rgba(16,24,38,0.55);z-index:-1}
+
+    .ios26-header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px}
+    .ios26-header .glass{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 18px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(16,24,38,0.35),rgba(16,24,38,0.18));-webkit-backdrop-filter:blur(18px) saturate(140%) contrast(110%);backdrop-filter:blur(18px) saturate(140%) contrast(110%);box-shadow:0 20px 40px rgba(0,0,0,0.28),inset 0 1px 0 rgba(255,255,255,0.25);isolation:isolate;overflow:hidden}
+    .ios26-header .glass::before{content:"";position:absolute;inset:0;border-radius:var(--radius);padding:1px;background:linear-gradient(180deg,var(--edge),var(--edge-soft));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+    .ios26-header .glass::after{content:"";position:absolute;inset:-1px;border-radius:var(--radius);background:radial-gradient(120% 70% at 0% 0%,rgba(255,255,255,0.40),transparent 60%),radial-gradient(120% 70% at 100% 100%,rgba(255,255,255,0.24),transparent 62%),linear-gradient(100deg,transparent 40%,rgba(255,255,255,0.38) 50%,transparent 60%);background-size:120% 120%,120% 120%,250% 100%;mix-blend-mode:screen;opacity:.65;pointer-events:none}
+    .ios26-header .refract{position:absolute;inset:0;border-radius:inherit;-webkit-backdrop-filter:blur(18px) saturate(140%) contrast(105%);backdrop-filter:blur(18px) saturate(140%) contrast(105%);filter:url(#liquid);opacity:.9;z-index:0;pointer-events:none}
+    .ios26-header .brand{position:relative;z-index:1;display:flex;align-items:center;gap:12px;text-decoration:none}
+    .ios26-header .logo{width:40px;height:40px;display:inline-block;background:none;border-radius:50%}
+    .ios26-header .logo img{width:100%;height:100%;display:block}
+    .ios26-header .name{color:#eef3f9;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+    .ios26-header .name-brand{color:var(--brand-blue)}
+    .ios26-header .name-red{color:var(--brand-red)}
+    .ios26-header .nav{position:relative;z-index:1;display:flex;align-items:center;gap:6px}
+    .ios26-header .nav a{color:#e6edf5;text-decoration:none;padding:10px 12px;border-radius:12px;transition:transform .2s ease,background-color .2s ease}
+    .ios26-header .nav a:hover{background:rgba(255,255,255,0.10);transform:translateY(-1px)}
+    .ios26-header .cta{color:#fff;background:linear-gradient(180deg,#3a86f1,#2a7be4);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.3);box-shadow:0 10px 20px rgba(42,123,228,0.35)}
+    .ios26-header .toggle{display:none;cursor:pointer;border:0;background:rgba(255,255,255,0.12);color:#fff;border-radius:12px;width:40px;height:40px;-webkit-backdrop-filter:blur(10px) saturate(130%);backdrop-filter:blur(10px) saturate(130%)}
+    .ios26-header .icon{width:20px;height:20px;position:relative;margin:0 auto}
+    .ios26-header .icon::before,.ios26-header .icon::after,.ios26-header .icon span{content:"";position:absolute;left:0;right:0;height:2px;background:#fff;border-radius:2px;transition:transform .24s ease,top .24s ease,opacity .24s ease}
+    .ios26-header .icon::before{top:4px}
+    .ios26-header .icon span{top:9px}
+    .ios26-header .icon::after{top:14px}
+    .ios26-header .toggle[aria-expanded="true"] .icon span{opacity:0}
+    .ios26-header .toggle[aria-expanded="true"] .icon::before{top:9px;transform:rotate(45deg)}
+    .ios26-header .toggle[aria-expanded="true"] .icon::after{top:9px;transform:rotate(-45deg)}
+    @media(max-width:900px){.ios26-header .glass{flex-direction:row;align-items:center}.ios26-header .nav{flex-direction:row;align-items:center;gap:6px;background:transparent;padding:0;border-radius:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}.ios26-header .nav a{background:transparent}}
+    @keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+    .content{max-width:1100px;margin:120px auto 60px;padding:0 20px}
+    .page-title{margin:0 0 24px;color:#eef3f9;font-size:42px;font-weight:900;letter-spacing:.5px;text-transform:uppercase}
+    .subtitle{margin:0 0 30px;color:#e6edf5;opacity:.9}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.cards{grid-template-columns:1fr}}
+    .card{position:relative;background:#ffffff;border-radius:16px;box-shadow:0 16px 40px rgba(0,0,0,0.28);padding:18px}
+    .card:hover{transform:translateY(-2px);transition:transform .2s ease}
+    .card h3{margin:0 0 10px;color:var(--brand-blue);font-size:20px;font-weight:800}
+    .card h4{margin:14px 0 8px;color:var(--brand-red);font-size:16px;font-weight:800}
+    .card ul{margin:0;padding-left:18px;color:#0f1f38}
+    .card li{margin:6px 0}
+    .contact{margin:30px 0;padding:18px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,0.22),rgba(255,255,255,0.14));-webkit-backdrop-filter:blur(14px) saturate(140%) contrast(105%);backdrop-filter:blur(14px) saturate(140%) contrast(105%);box-shadow:0 20px 40px rgba(0,0,0,0.28),inset 0 1px 0 rgba(255,255,255,0.25);color:#eef3f9}
+    .contact a{color:#eef3f9;text-decoration:none}
+    .footer{background:#000;margin-top:20px}
+    .footer .container{max-width:1100px;margin:0 auto;padding:24px 20px}
+    .footer .links{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px}
+    .footer .links a{color:var(--brand-red);text-decoration:none}
+    .footer .meta{color:var(--brand-red)}
+    .reveal-base{opacity:0;transform:translateX(0);transition:opacity 1000ms ease,transform 1000ms ease;will-change:opacity,transform}
+    .reveal-left{transform:translateX(-24px)}
+    .reveal-right{transform:translateX(24px)}
+    .reveal-visible{opacity:1;transform:translateX(0)}
+  </style>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <header class="ios26-header"><div class="glass"><div class="refract"></div><a class="brand" href="index.html"><span class="logo"><img src="logo.png" alt="Paverite logo"/></span><span class="name"><span class="name-brand">PAVE</span><span class="name-red">R</span><span class="name-brand">ITE</span></span></a><nav class="nav" id="nav"><a href="products.html">Products</a><a href="moreservices.html">Services</a><a href="contact.html">Contact</a></nav></div></header>
+  <main class="content">
+    <h1 class="page-title reveal-base reveal-left">More Services</h1>
+    <p class="subtitle reveal-base reveal-right">Professional services delivered with the same trusted quality.</p>
+    <div class="cards">
+      <section class="card reveal-base reveal-left">
+        <h3>Roof Inspection</h3>
+      </section>
+      <section class="card reveal-base reveal-right">
+        <h3>DURAWALLS</h3>
+        <h4>Precast Durawalls:</h4>
+        <ul>
+          <li>Decorated and plain types</li>
+          <li>Heights: 2.1m and 1.8m</li>
+          <li>Decorated: $40–$45</li>
+          <li>Plain: $30–$35</li>
+        </ul>
+        <h4>Brick Durawalls:</h4>
+        <ul>
+          <li>Uses common bricks (plastered and designed)</li>
+          <li>Prices depend on design and thickness</li>
+          <li>Can use face bricks for decorative options</li>
+        </ul>
+      </section>
+      <section class="card reveal-base reveal-left">
+        <h3>Building Construction:</h3>
+        <ul>
+          <li>Houses, garages, factories, offices</li>
+          <li>Fix &amp; supply or labour-only options</li>
+          <li>Charges depend on material costs</li>
+        </ul>
+      </section>
+      <section class="card reveal-base reveal-right">
+        <h3>Plumbing Services:</h3>
+        <ul>
+          <li>New installations &amp; maintenance</li>
+          <li>Blocked drains</li>
+          <li>Geyser overflows</li>
+          <li>Tank installations and tank stands</li>
+          <li>Sewer emptying, septic tanks, drain laying</li>
+          <li>Air-locked taps, porous pipes, Blair toilet emptying</li>
+        </ul>
+      </section>
+      <section class="card reveal-base reveal-left">
+        <h3>PAINTING</h3>
+        <ul>
+          <li>Decorative painting</li>
+          <li>Colour mixing</li>
+          <li>Professional colour choosing</li>
+          <li>Fully equipped with scaffolding for safe work</li>
+        </ul>
+      </section>
+      <section class="card reveal-base reveal-right">
+        <h3>RENOVATIONS</h3>
+        <ul>
+          <li>Roof filling</li>
+          <li>Painting</li>
+          <li>Replacing durawalls</li>
+          <li>Carpentry</li>
+          <li>Tiling</li>
+          <li>Crack filling</li>
+          <li>Full house modernisation</li>
+        </ul>
+      </section>
+      <section class="card reveal-base reveal-left">
+        <h3>Tennis Courts</h3>
+        <ul>
+          <li>New installations</li>
+          <li>Repairs and renovations</li>
+          <li>Price range: $15–$20 depending on size</li>
+        </ul>
+      </section>
+    </div>
+    <section id="contact" class="contact reveal-base reveal-right">
+      <h3>Contact Information</h3>
+      <p>Email: <a href="mailto:info@paverite.co.zw">info@paverite.co.zw</a></p>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Credits</a>
+        <a href="#">FAQ</a>
+      </div>
+      <div class="meta">Copyright © 2025 PAVERITE · Powered by Webvibes</div>
+    </div>
+  </footer>
+  <svg width="0" height="0" style="position:fixed"><filter id="liquid"><feTurbulence id="noise" type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="2" result="turb"/><feGaussianBlur stdDeviation="1.2"/><feDisplacementMap id="disp" in="SourceGraphic" in2="turb" xChannelSelector="R" yChannelSelector="G" scale="8"/><animate xlink:href="#noise" attributeName="seed" values="1;2;3;4;5;6;7;8;9;10;1" dur="12s" repeatCount="indefinite"/></filter></svg>
+  <script>
+    const t=document.querySelector('.ios26-header .toggle');
+    const n=document.querySelector('.ios26-header .nav');
+    if(t&&n){t.addEventListener('click',()=>{const o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false')})}
+    document.addEventListener('click',(e)=>{const o=n&&n.classList.contains('open');if(!o)return;if(e.target.closest('.ios26-header .nav')||e.target.closest('.ios26-header .toggle'))return;n.classList.remove('open');if(t)t.setAttribute('aria-expanded','false')});
+    if(n){n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');if(t)t.setAttribute('aria-expanded','false')}))}
+    ['https://cdn.prod.website-files.com/69171b99e38abbbab41a06fc/69171b9be38abbbab41a07b6_5f653db856f72049dd2d76d450ae5bf2_project-1-img.jpg',
+     'https://cdn.prod.website-files.com/69171b99e38abbbab41a06fc/69171b9be38abbbab41a07bb_4204fc381beb41c02be4fd2d18c6649f_gallery-img-bl.jpg',
+     'https://cdn.prod.website-files.com/69171b99e38abbbab41a06fc/69171b9be38abbbab41a07b8_540ff395ea7a3837bf45a9551f6fb9d7_gallery-img-br.jpg']
+    .forEach(u=>{
+      document.querySelectorAll(`img[src="${u}"]`).forEach(img=>{
+        const a=img.closest('a');
+        if(a) a.setAttribute('href','products.html');
+        img.addEventListener('click',()=>{window.location.href='products.html'});
+      });
+    });
+    document.querySelectorAll('a[href^="file:///C:/Users/User/Desktop/paverite website/product2.html"]').forEach(a=>a.setAttribute('href','products.html'));
+    const d=document.getElementById('disp');
+    window.addEventListener('scroll',()=>{const y=window.scrollY;const s=8+Math.min(8,y/600*6);if(d)d.setAttribute('scale',s.toFixed(1))});
+    const cands=Array.from(document.querySelectorAll('h1,h2,h3,h4,p,ul,.subtitle,.card,.contact'));
+    let left=true; cands.forEach(el=>{el.classList.add('reveal-base',left?'reveal-left':'reveal-right'); left=!left});
+    const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('reveal-visible'); io.unobserve(e.target)}})},{threshold:0.15});
+    cands.forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
